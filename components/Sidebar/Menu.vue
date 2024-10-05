@@ -7,15 +7,10 @@
     </header>
     <div class="px-4 grow">
       <div class="grid gap-3">
-        <div v-for="(item, index) in items" :key="index"  class="flex items-center gap-2 px-2 py-1 transition rounded cursor-pointer hover:bg-neutral-100">
+        <NuxtLink :href="item.path" v-for="(item, index) in items" :key="index"  class="flex items-center gap-2 px-2 py-1 transition rounded cursor-pointer hover:bg-neutral-100">
           <Icon size="20" :name="item.icon" color="#000b26"/>
-          <a
-            :href="item.path"
-           
-          >
-             {{ item.title }}
-          </a>
-        </div>
+          <span>{{ item.title }}</span>
+        </NuxtLink>
       </div>
     </div>
   </div>
@@ -24,7 +19,7 @@
 <script setup>
 
 const items = ref([
-  { title: "Overview", path: "/overview" ,icon:"ri:dashboard-line"},
+  { title: "Overview", path: "/" ,icon:"ri:dashboard-line"},
   { title: "Transactions", path: "/transactions" ,icon:"uil:transaction"},
   { title: "Account", path: "/account",icon:"mdi:account" },
   { title: "Contacts", path: "/contacts",icon:"material-symbols:contacts" },
