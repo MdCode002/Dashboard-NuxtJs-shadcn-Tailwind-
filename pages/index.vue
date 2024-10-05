@@ -90,7 +90,7 @@ onMounted(() => {
         <p>Hi Mouhamed welcome back</p>
         <h1>Dashboard</h1>
       </div>
-      <div class="bg-neutral-200 w-[80px] h-[30px]"></div>
+      <ProductNew />
     </header>
     <main class="grid gap-4">
       <Tabs :default-value="listTabs[0].value">
@@ -115,7 +115,7 @@ onMounted(() => {
     </main>
     <footer>
       <div class="flex items-center gap-2">
-        <Card v-for="(card,i) in cards" :key="i" :card='card'/>
+        <Card v-for="(card, i) in cards" :key="i" :card="card" />
       </div>
     </footer>
   </div>
