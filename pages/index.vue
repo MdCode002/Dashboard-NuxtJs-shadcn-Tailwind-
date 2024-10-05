@@ -1,35 +1,28 @@
-
 <script setup>
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 const loading = ref(false);
+let data = ref([]);
 
 const listTabs = ref([
   {
-    label: 'Today',
-    value: 'today',
+    label: "Today",
+    value: "today",
     content: resolveComponent("TabsToday"),
   },
   {
-    label: 'This Week',
-    value: 'week',
-    content: 'This Week',
+    label: "This Week",
+    value: "week",
+    content: "This Week",
   },
   {
-    label: 'This Year',
-    value: 'year',
-    content: 'This Year',
+    label: "This Year",
+    value: "year",
+    content: "This Year",
   },
 ]);
 
-let data = ref([
-  16.0, 18.2, 23.1, 27.9, 32.2, 36.4, 39.8, 38.4, 35.5, 29.2,
-  22.0, 17.8,
-]);
-
-
-let currentCategory = ref('today');
-
+let currentCategory = ref("today");
 
 function generateRandomData(number = 23) {
   let values = [];
@@ -44,13 +37,13 @@ function generateRandomData(number = 23) {
 function setCategory(cat) {
   currentCategory.value = cat;
   switch (cat) {
-    case 'today':
+    case "today":
       generateRandomData(23);
       break; // Ajoutez break ici
-    case 'week':
+    case "week":
       generateRandomData(6);
       break; // Ajoutez break ici
-    case 'year':
+    case "year":
       generateRandomData(11);
       break; // Ajoutez break ici
     default:
@@ -59,11 +52,36 @@ function setCategory(cat) {
   }
 }
 
+const cards = [
+  {
+    title: "Sales",
+    progression: 12,
+    amount: 1244.43,
+    label: "View sales",
+    description: "Sales of March 2024",
+    icon: "solar:ticket-sale-outline",
+  },
+  {
+    title: "Refunds",
+    progression: 8,
+    amount: 84.44,
+    label: "View refunds",
+    description: "Refunds since beginning of year",
+    icon: "heroicons-outline:receipt-refund",
+  },
+  {
+    title: "Payouts",
+    progression: 14,
+    amount: 899.99,
+    label: "View payouts",
+    description: "Payouts of this week",
+    icon: "tabler:zoom-money",
+  },
+];
 onMounted(() => {
   generateRandomData();
 });
 </script>
-
 
 <template>
   <div class="grid gap-8">
@@ -91,17 +109,14 @@ onMounted(() => {
           :key="index"
           :value="listTab.value"
         >
-          <Chart :currentCategory="currentCategory" :data="data"/>
+          <Chart :currentCategory="currentCategory" :data="data" />
         </TabsContent>
       </Tabs>
     </main>
     <footer>
       <div class="flex items-center gap-2">
-        <div class="bg-neutral-200 h-[200px] w-full"></div>
-        <div class="bg-neutral-200 h-[200px] w-full"></div>
-        <div class="bg-neutral-200 h-[200px] w-full"></div>
+        <Card v-for="(card,i) in cards" :key="i" :card='card'/>
       </div>
     </footer>
   </div>
 </template>
-

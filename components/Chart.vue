@@ -1,10 +1,10 @@
 <script setup>
-let props = defineProps(["currentCategory", "data"]);
-let data = ref(props.data);
-let currentCategory = props.currentCategory || "today";
-console.log(data);
+const props = defineProps(["currentCategory", "data"]);
+const data = ref(props.data);
+const currentCategory = ref(props.currentCategory);
+console.log(data.value);
 
-let categories = ref({
+const categories = ref({
   today: [
     '00:00', '01:00', '02:00', '03:00', '04:00', '05:00', '06:00', '07:00',
     '08:00', '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00',
@@ -26,7 +26,7 @@ const chartOptions = computed(() => {
       text: '',
     },
     xAxis: {
-      categories: categories.value[currentCategory.value], // Correction ici
+      categories: categories.value[currentCategory.value],
     },
     yAxis: {
       title: {
@@ -45,8 +45,8 @@ const chartOptions = computed(() => {
       },
     },
     series: [{
-      name: 'line',
-      linewidth: '4px',
+      name: 'ligne',
+      lineWidth: 4,
       data: data.value,
       color: {
         linearGradient: {},
@@ -63,7 +63,7 @@ const chartOptions = computed(() => {
 
 </script>
 <template>
-    <div>
+    <div class="border p-4 rounded bg">
         <highchart v-if="data.length > 0" :options="chartOptions" />
     </div>
 </template>
