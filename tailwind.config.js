@@ -7,6 +7,9 @@ module.exports = {
   prefix: "",
   
   theme: {
+    color: {
+      "mdsoft": '#000b26'
+    },
     container: {
       center: true,
       padding: "2rem",

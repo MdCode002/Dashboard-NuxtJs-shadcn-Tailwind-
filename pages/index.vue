@@ -1,15 +1,4 @@
 <template>
-  <h1> HELLO WORLD</h1>
-  <Button>Click me</Button>
-
+  <p> main page</p>
 </template>
 
-<script>
-export default {
-
-}
-</script>
-
-<style>
-
-</style>
